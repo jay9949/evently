@@ -59,7 +59,7 @@ export async function POST(req: Request) {
     const { id, email_addresses, image_url, first_name, last_name, username } =
       evt.data;
 
-    const user = {
+    const users = {
       clerkId: id,
       email: email_addresses[0].email_address,
       username: username,
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
       photo: image_url,
     };
 
-    const newUser = await createUser(user);
+    const newUser = await createUser(users);
 
     if (newUser) {
       await clerkClient.users.updateUserMetadata(id, {
